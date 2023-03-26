@@ -1,0 +1,84 @@
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  p, ul {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+    color: #000000;
+    line-height: 25px;
+    text-align:  justify;
+    margin: 20px 20px 20px 20px;}
+  
+  h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  #image {
+    display: block;
+    margin: auto;
+    position: relative;
+    top: 10px;
+    border-color: #72041B;
+    border-width: 18px;
+    border-style: solid;
+  }
+  
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  #img-caption {
+    position: relative;
+    top: 15px;
+    text-align: center;
+  }
+  
+  .green-background {
+    background-color: #047213;
+    color: #ffffff;
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+  }
+  
+  .light-green-background {
+    background-color: #ABEE9F;
+    padding: 5px;
+    opacity: 80%;
+  }
+  
+  body {
+    background: url("https://blogger.googleusercontent.com/img/a/AVvXsEjZgBwGMEp6cxPbdBwQcAemsZH5dcHFdTfwYNBDN76UVuhtGtV6pA-VkL7mEoTEtJdOZ5S8EXPbN0zBbD6BTT7ed9lAAHGcu1cTd7fEalcBjDZ5QqjqNePzL3PI25rVdYcxUHBWXhVZ3NlLT6sikjKYb8zG-nDu3a12sVTJqLHu_UrwzDubGaFoQ6fbDw=w945-h600-p-k-no-nu");
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    object-fit: fill;
+  }
+  
+  #authors {
+    background-color: #047213;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+    margin: 10px;
+    height: 15px;
+  }
+  
+  #tribute-link {
+    text-align: left;
+  }
+  
+  #footer {
+    text-align: center;
+  }
+  
