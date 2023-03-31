@@ -15,7 +15,6 @@ navbar {
   margin: 0;
   padding: 0;
   width: 25%;
-  background-color: #f1f1f1;
   height: 100%; /* Full height */
   position: fixed; /* Make it stick, even on scroll */
   overflow: auto; /* Enable scrolling if the sidenav has too much content */
@@ -25,7 +24,7 @@ navbar {
   position: fixed;
   top: 0px;
   left: 0px;
-  background-color: Indigo;
+  background-color: indigo;
   color: White;
 }
 
@@ -36,8 +35,9 @@ navbar {
 }
 
 body {
-  background-color: PaleTurquoise;
+  background-color: paleturquoise;
   width: 100%;
+  padding-right: 20px;
   overflow-x: hidden;
 }
 
@@ -52,6 +52,9 @@ main  {
 #main-doc {
   display: table;
   width: 100%
+  padding: 20px;
+  justify-content: center;
+  background-color: palegoldenrod;
 }
 
 #container {
@@ -70,42 +73,34 @@ table {
   border: 2px solid red;
   letter-spacing: 1px;
   font-size: 12px;
+  background-color: white;
 }
 
 td, th {
-  border: 1px solid Pink;
+  border: 1px solid pink;
   padding: 10px;
 }
 
 th {
-  background-color: Salmon;
+  background-color: salmon;
 }
 
 td {
-  background-color: HoneyDew;
+  background-color: honeydew;
   text-align: center;
 }
 
 .code {
   background-color: black;
   color: white;
-  padding: 10px;
+  padding: 20px;
+  margin-right: 20px;
   border-radius: 20px;
   text-align: inherit;
 }
 
-#main-doc {
-  background-color: PaleGoldenRod;
-  padding: 20px;
-  justify-content: center;
-}
-
-.table {
-  background-color: White;
-}
-
 footer {
-  background-color: Indigo;
+  background-color: indigo;
   color: White;
   text-align: end;
   padding: 10px;
