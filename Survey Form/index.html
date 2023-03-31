@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Survey Form</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  
+</head>
+
+<body>
+  <header>
+    <p id="brand"><strong>Ari</strong></p>
+    <span></span>
+    <p id="teaching">School of Spanish</p>
+    <br /> <br />
+    <h1 id="title">Survey Form</h1>
+    <header />
+    <div>
+      <p id="description">Thank you for booking Spanish classes at Ari School of Spanish Language.
+        In order to offer you a better learning experience, it is necessary to know a few things about you, to adapt the classes to your needs and preferences.
+        Please answer the following questions:</p>
+    </div>
+    <form action="arischoolofspanish.com/submitform" method="post" id="survey-form">
+      <div>
+        <label for="name" id="name-label">Name:</label>
+        <input type="text" required placeholder="Please, enter your name." name="user-name" id="name">
+      </div>
+      <br /> <br />
+      <div>
+        <label for="email" id="email-label">Email:</label>
+        <input type="email" id="email" name="email" maxLength="64" size="64" placeholder="Please, enter your email." title="Enter a valid email address" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA- Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
+      </div>
+      <br /> <br />
+      <div>
+        <label for="number" id="number-label">Age:</label>
+        <input type="number" required placeholder="Age." name="user-age" id="number" value="1" min="18" max="90" step="1">
+      </div>
+      <br /> <br />
+      <div>
+        <p>
+        <ol>
+          <li>What is your current level of Spanish?
+            <br /> <br />
+            <select name="dropdown" placeholder="Please, select your current level." id="dropdown">
+              <optgroup label="Your current level of Spanish">
+                <option>None</option>
+                <option selected="selected">A1</option>
+                <option>A2</option>
+                <option>B1</option>
+                <option>B2</option>
+                <option>C1</option>
+                <option>C2</option>
+              </optgroup>
+            </select>
+            <br /> <br />
+          <li>Why are you studying Spanish?
+            <br /> <br />
+            <select name="dropdown" placeholder="Please, select an option.">
+              <optgroup label="Reasons to stuty Spanish">
+                <option>Because I need Spanish to get a job or to get a better job.</option>
+                <option selected="selected">Because I have friends or relatives who speak Spanish.</option>
+                <option>Because I am going to take a Spanish exam: DELE, University access, Escuela Oficial de Idiomas...</option>
+                <option>Because I like to learn other languages. e. Because I plan to go to work or live in a Spanish-speaking country.</option>
+              </optgroup>
+            </select>
+            <br /> <br />
+          <li>What topic(s) would you like to work on?
+            <br /> <br />
+            <label for="topics"><input id="topics" value="topics" type="checkbox" name="like to work on">Daily life in Spanish-speaking countries: schedules, meals, popular festivals...</label>
+            <br /> <br />
+            <label for="topics"><input id="topics" value="topics" type="checkbox" name="like to work on">Political reality of Spanish-speaking countries: political regimes, power organs...</label>
+            <br /> <br />
+            <label for="topics"><input id="topics" value="topics" type="checkbox" name="like to work on">Geography and history of Spain and Latin America.</label>
+            <br /> <br />
+            <label for="topics"><input id="topics" value="topics" type="checkbox" name="like to work on">Social reality of Spanish-speaking countries: political regimes, power organs...</label>
+            <br /> <br />
+          <li>What do you expect to be able to do at the end of this course?
+            <br /> <br />
+            <label for="expectations"><input id="expectations" value="expectations" type="checkbox" name="be able to do">Talk about my life: describe my home, what studies I have, where I currently work....</label>
+            <br /> <br />
+            <label for="expectations"><input id="expectations" value="expectations" type="checkbox" name="be able to do">Reading newspaper articles about current events...</label>
+            <br /> <br />
+            <label for="expectations"><input id="expectations" value="expectations" type="checkbox" name="be able to do">Performing everyday actions: shopping in a store...</label>
+            <br /> <br />
+            <label for="expectations"><input id="expectations" value="expectations" type="checkbox" name="be able to do">Writing letters and e-mails telling about past experiences and events, personal likes and dislikes...</label>
+            <br /> <br />
+          <li>Which learning style do you identify with?
+            <br /> <br />
+            <label for="learning style">
+              <input id="learning style" value="learning style" type="radio" name="learning style options" checked>Analytical - The analytical learner likes language: doing grammar exercises, practicing pronunciation, analyzing and knowing grammatical rules, etc. He decides to speak only when he is sure that he will do it correctly.
+            </label>
+            <br /> <br />
+            <label for="learning style">
+              <input id="learning style" value="learning style" type="radio" name="learning style options">Global: The global learner prefers to learn with authentic samples of the language: reading the newspaper, watching television, listening to the radio.... He takes every opportunity to speak in Spanish, both in and out of class, because he cares more about communicating than making mistakes.
+            </label>
+            <br /> <br />
+            <label for="learning style">
+              <input id="learning style" value="learning style" type="radio" name="learning style options">Visual: This student learns with his eyes: he has a facility for learning new words by writing them down; he also finds it comfortable to learn by reading newspapers and magazines, watching movies...
+            </label>
+            <br /> <br />
+            <label for="learning style">
+              <input id="learning style" value="learning style" type="radio" name="learning style options">Auditory: This student uses his eyes to learn new words. Auditory - This student uses the ear: he learns new words by listening to them, easily understands songs, works with the tapes of the didactic units of the textbook...
+            </label>
+            <br /> <br />
+            <label for="learning style">
+              <input id="learning style" value="learning style" type="radio" name="learning style options">Kinesthetic - This student, in order to learn, needs to pick up objects, move around the classroom, perform activities that require physical effort.
+            </label>
+            <br /><br /><br />
+          <li><label for="msg">Any comments or sugestions?</label>
+            <br /> <br />
+            <textarea id="msg" name="user_message" placeholder="Please, enter comments or sugestions here..."></textarea>
+            <br /> <br />
+      </div>
+      <br /> <br />
+      <div>
+        <button type="reset"><strong>Reset</strong></button>
+        <span> <span />
+          <button type="submit" id="submit">Submit</button>
+          <ol />
+          </p>
+    </form>
+    </div>
+    <div id="footer">Copyright 2022 - Ariana Spretz</div>
+</body>
+            
+</html>
