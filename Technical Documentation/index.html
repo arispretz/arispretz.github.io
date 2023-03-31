@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+   <title>Technical Documentation</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+  
+<body>
+  <header>
+    <aside>
+      <nav id="navbar">
+        <header><a href="#small_guide_to_css_media_queries" class="nav-link">Small Guide to CSS Media Queries</a></header>
+        <p><a href="#introduction" class="nav-link">Introduction</a></p>
+        <p><a href="#using_media_queries" class="nav-link">Using media queries</a></p>
+        <p><a href="#anatomy_of_a_media_query" class="nav-link">Anatomy of a media query</a></p>
+        <p><a href="#do_you_really_need_media_queries?" class="nav-link">Do you really need media queries?</a></p>
+        <p><a href="#using_min-_and_max-_to_match_value_ranges" class="nav-link">Using min- and max- to match value ranges</a></p>
+        <p><a href="#nesting_and_complex_decision_making?" class="nav-link">Nesting and complex decision making?</a></p>
+        <p><a href="#accessibility" class="nav-link">Accessibility</a></p>
+        <p><a href="#what_lies_ahead?" class="nav-link">What lies ahead?</a></p>
+        <p><a href="#browser_support" class="nav-link">Browser support</a></p>
+        <p><a href="#a_note_on_container_queries" class="nav-link">A note on container queries</a></p>
+      </nav>
+    </aside>
+  </header>
+  
+<main id="main-doc">
+  <div id="container">
+<section class="main-section" id="small_guide_to_css_media_queries">
+<header>
+<h1>Small Guide to CSS Media Queries</h1>
+<a name="small_guide_to_css_media_queries"></a>
+</header>
+</section>
+  <section class="main-section" id="introduction">
+<header>
+    <h2>Introduction</h2>
+    <a name="introduction"></a>
+</header>
+    <p>Media queries can modify the appearance (and even behavior) or a website or app based on a matched set of conditions about the user’s device, browser or system settings.</p>
+    <p>Media queries are a way to target browser by certain characteristics, features, and user preferences, then apply styles or run other code based on those things. Perhaps the most common media queries in the world are those that target particular viewport ranges and apply custom styles, which birthed the whole idea of responsive design.</p>
+      <div class="code">
+        <code>
+          <p>/* When the browser is at least 600px and above */</p>
+          <p>@media screen and (min-width: 600px) {</p>
+          <p>.element {</p>
+          <p>/* Apply some styles */</p>
+          <p>}</p>
+          <p>}</p>
+        </code>
+      </div>
+    <p>There are lots of other things we can target beside viewport width. That might be screen resolution, device orientation, operating system preference, or even more among a whole bevy of things we can query and use to style content.</p>
+  </section>
+<hr>
+  <section class="main-section" id="using_media_queries">
+<header>
+    <h2>Using media queries</h2>
+    <a name="using_media_queries"></a>
+</header>
+    <p>Media queries are commonly associated with CSS, but they can be used in HTML and JavaScript as well.</p>
+    <h3>HTML</h3>
+    <p>There are a few ways we can use media queries directly in HTML. There’s the "link" element that goes right in the document "head". In this example. we’re telling the browser that we want to use different stylesheets at different viewport sizes:</p>
+      <div class="code">
+        <code>
+          &lthtml&gt
+          <br>
+          &lthead&gt
+          <br>
+          &lt!-- Served to all users --&gt
+          <br>
+          &ltlink rel="stylesheet" href="all.css" media="all"/&gt
+          <br>
+          &lt!-- Served to screens that are at least 20em wide --&gt
+          <br>
+          &ltlink rel="stylesheet" href="small.css" media="(min-width: 20em)"/&gt
+          <br>
+          &lt!-- Served to screens that are at least 64em wide --&gt
+          <br>
+          &ltlink rel="stylesheet" href="medium.css" media="(min-width: 64em)"/&gt
+          <br>
+          &lt!-- Served to screens that are at least 90em wide --&gt
+          <br>
+          &ltlink rel="stylesheet" href="large.css" media="(min-width: 90em)"&gt
+          <br>
+          &lt!-- Served to screens that are at least 120em wide --&gt
+          <br>
+          &ltlink rel="stylesheet" href="extra-large.css" media="(min-width: 120em)"/&gt
+          <br>
+          &lt!--&lt Served to print media, like printers --&gt
+          <br>
+          &ltlink rel="stylesheet" href="print.css" media="print"/&gt
+          <br>
+          &lt/head&gt
+          <br>
+          &lt!-- ... --&gt
+          <br>
+          &lt/html&gt
+        </code>
+      </div>
+    <p>Why would you want to do that? It can be a nice way to fine-tune the performance of your site by splitting styles up in a way that they’re downloaded and served by the devices that need them.</p>
+    <p>But just to be clear, this doesn’t always prevent the stylesheets that don’t match those media queries from downloading, it just assigns them a low loading priority level. So, if a small screen device like a phone visits the site, it will only download the stylesheets in the media queries that match its viewport size. But if a larger desktop screen comes along, it will download the entire bunch because it matches all of those queries (well, minus the print query in this specific example).</p>
+    <p>That’s just the "link" element. As our guide to responsive images explains, we can use media queries on "source" element, which informs the "picture" element what version of an image the browser should use from a set of image options.</p>
+      <div class="code">
+        <code>
+          &ltpicture&gt
+          &lt!-- Use this image if the screen is at least 800px wide --&gt
+          <br>
+          &ltsource src="cat-landscape.png" media="(min-width: 800px)"&gt
+          <br>
+          &lt!-- Use this image if the screen is at least 600px wide --&gt
+          <br>
+          &ltsource src="cat-cropped.png" media="(min-width: 600px)"&gt
+          <br>
+          &lt!-- Use this image if nothing matches --&gt
+          <br>
+          &ltimg src="cat.png" alt="A calico cat with dark aviator sunglasses."&gt
+          <br>
+          &lt/picture&gt
+        </code>
+      </div>
+    <p>Again, this can be a nice performance win because we can serve smaller images to smaller devices — which presumably (but not always) will be low powered devices that might be limited to a data plan.</p>
+    <p>And let’s not forget that we can use media queries directly on the style element as well:</p>
+      <div class="code">
+        <code>
+          &ltstyle&gt
+          &lt {&gt
+          &ltbackground-color: blue;&gt
+          &ltcolor: white;&gt
+          &lt}&gt
+          &lt/style&gt
+          &ltstyle media="all and (max-width: 500px)"&gt
+          &lt{&gt
+          &ltbackground-color: yellow;&gt
+          &ltcolor: blue;&gt
+          &lt}&gt
+          &lt/style&gt
+        </code>
+      </div>
+    <h3>CSS</h3>
+    <p>Again, CSS is the most common place to spot a media query in the wild. They go right in the stylesheet in an @media rule that wraps elements with conditions for when and where to apply a set of styles when a browser matches those conditions.</p>
+      <div class="code">
+       <code>
+          <p>/* Viewports between 320px and 480px wide */</p>
+          <p>@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {</p>
+          <p>.card {</p>
+          <p>background: #bada55;</p>
+          <p>}</p>
+          <p>}</p>
+        </code>
+      </div>
+    <p>It’s also possible to scope imported style sheet but as a general rule avoid using @import since it performs poorly.</p>
+      <div class="code">
+        <code>
+          <p>/* Avoid using @import if possible! */</p>
+          <p>/* Base styles for all screens */</p>
+          <p>@import url("style.css") screen;</p>
+          <p>/* Styles for screens in a portrait (narrow) orientation */</p>
+          <p>@import url('landscape.css') screen and (orientation: portrait);</p>
+          <p>/* Print styles */</p>
+          <p>@import url("print.css") print;</p>
+        </code>
+      </div>
+    <h3>JavaScript</h3>
+    <p>We can use media queries in JavaScript, too! And guess, what? They’re work a lot like they do in CSS. The difference? We start by using the window.matchMedia() method to define the conditions first.</p>
+    <p>So, say we want to log a message to the console when the browser is at least 768px wide. We can create a constant that calls matchMedia() and defines that screen width:</p>
+      <div class="code">
+        <code>
+          <p>// Create a media condition that targets viewports at least 768px wide</p>
+          <p>const mediaQuery = window.matchMedia( '( min-width: 768px )' )</p>
+        </code>
+   <p>Then we can fire log to the console when that condition is matched:</p>
+     <code>
+       <p>// Create a media condition that targets viewports at least 768px wide</p>
+       <p>const mediaQuery = window.matchMedia( '( min-width: 768px )' )</p>
+       <p> </p>
+       <p>// Note the `matches` property</p>
+       <p>if ( mediaQuery.matches ) {</p>
+       <p>console.log('Media Query Matched!')</p>
+       <p>}</p>
+     </code>
+  </div>
+  <p>Unfortunately, this only fires once so if the alert is dismissed, it won’t fire again if we change the screen width and try again without refreshing. That’s why it’s a good idea to use a listener that checks for updates.</p>
+    <div class="code">
+      <code>
+        <p>// Create a condition that targets viewports at least 768px wide</p>
+        <p>const mediaQuery = window.matchMedia('(min-width: 768px)')</p>
+        <p> </p>
+        <p>function handleTabletChange(e) {</p>
+        <p>// Check if the media query is true</p>
+        <p>if (e.matches) {</p>
+        <p>// Then log the following message to the console</p>
+        <p>console.log('Media Query Matched!')</p>
+        <p>}</p>
+        <p>}</p>
+        <p> </p>
+        <p>// Register event listener</p>
+        <p>mediaQuery.addListener(handleTabletChange)</p>
+        <p>// Initial check</p>
+        <p>handleTabletChange(mediaQuery)</p>
+      </code>
+    </div>
+  </section>
+<hr>
+  <section class="main-section" id="anatomy_of_a_media_query">
+<header>
+    <h2>Anatomy of a media query</h2>
+    <a name="anatomy_of_a_media_query"></a>
+</header>
+    <p>Now that we’ve seen several examples of where media queries can be used, let’s pick them apart and see what they’re actually doing.</p>
+    <h3>@media</h3>
+      <div class="code">
+        <code>
+          <p>@media [media-type] ([media-feature]) {</p>
+          <p>/* Styles! */</p>
+          <p>}</p>
+        </code>
+      </div>
+  <p>The first ingredient in a media query recipe is the @media rule itself, which is one of many CSS at-rules. Why does @media get all the attention? Because it’s geared to the type of media that a site is viewed with, what features that media type supports, and operators that can be combined to mix and match simple and complex conditions alike.</p>
+  <h3>Media types</h3>
+    <div class="code">
+      <code>
+        <p>@media screen {</p>
+        <p>/* Styles! */</p>
+        <p>}</p>
+      </code>
+    </div>
+  <p>What type of media are we trying to target? In many (if not most) cases, you’ll see a screen value used here, which makes sense since many of the media types we’re trying to match are devices with screens attached to them.</p>
+  <p>But screens aren’t the only type of media we can target, of course. We have a few, including:
+    <ul>
+      <li>all: Matches all devices.</li>
+      <li>print: Matches documents that are viewed in a print preview or any media that breaks the content up into pages intended to print.</li>
+      <li>screen: Matches devices with a screen.</li>
+      <li>speech: Matches devices that read the content audibly, such as a screenreader. This replaces the now deprecated aural type since Media Queries Level 4.</li>
+    </ul>
+  <p>To preview print styles in a screen all major browsers can emulate the output of a print stylesheet using DevTools. Other media types such as tty, tv,  projection,  handheld, braille, embossed and aural have been deprecated and, while the spec continues to advise browsers to recognize them, they must evaluate to nothing. If you are using one of these consider changing it for a modern approach.</p>
+  <h3>Media features</h3>
+  <p>Once we define the type of media we’re trying to match, we can start defining what features we are trying to match it to. We’ve looked at a lot of examples that match screens to width, where screen is the type and both min-width and max-width are features with specific values.</p>
+  <p>But there are many, many (many!) more “features” we can match. Media Queries Level 4 groups 18 media features into 5 categories.</p>
+  <h3>Viewport/Page Characteristics</h3>
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Summary</th>
+    <th>Values</th>
+    <th>Added</th>
+ </tr>
+  <tr>
+    <td>width</td>
+    <td>Defines the widths of the viewport. This can be a specific number (e.g. 400px) or a range (using min-width and max-width).</td>
+    <td><length></td>
+    <td></td>
+ </tr>
+  <tr>
+    <td>height</td>
+    <td>Defines the height of the viewport. This can be a specific number (e.g. 400px) or a range (using min-height and max-height).</td>
+    <td><length></td>
+    <td></td>
+ </tr>
+  <tr>
+    <td>aspect-ratio</td>
+    <td>Defines the width-to-height aspect ratio of the viewport.</td>
+    <td><ratio></td>
+    <td></td>
+ </tr>
+  <tr>
+    <td>orientation</td>
+    <td>The way the screen is oriented, such as tall (portrait) or wide (landscape) based on how the device is rotated.</td>
+    <td><length></td>
+    <td></td>
+ </tr>
+  <tr>
+    <td>overflow-block</td>
+    <td>Checks how the device treats content that overflows the viewport in the block direction, which can be scroll (allows scrolling), optional-paged (allows scrolling and manual page breaks), paged (broken up into pages), and none (not displayed).</td>
+    <td><p>scroll</p><p>optional-paged</p><p>paged</p></td>
+    <td>Media Queries Level 4</td>
+ </tr>
+  <tr>
+    <td>overflow-inline</td>
+    <td>Checks if content that overflows the viewport along the inline axis be scrolled, which is either none (no scrolling) or scroll (allows scrolling).</td>
+    <td><p>scroll</p><p>none</p></td>
+    <td>Media Queries Level 4</td>
+ </tr>
+</table>
+  <h3>Display Quality</h3>
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Summary</th>
+    <th>Values</th>
+    <th>Added</th>
+  </tr>
+  <tr>
+    <td>resolution</td>
+    <td>Defines the target pixel density of the device</td>
+    <td><p><resolution></p><p>infinite</p></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>scan</td>
+    <td>Defines the scanning process of the device, which is the way the device paints an image onto the screen (where interlace draws odd and even lines alternately, and progressive draws them all in sequence).</td>
+    <td><p>interlace</p><p>progressive</p></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>grid</td>
+    <td>Determines if the device uses a grid (1) or bitmap (0) screen</td>
+    <td><p>0 = Bitmap</p><p>1 = Grid</p></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+  <tr>
+    <td>update</td>
+    <td>Checks how frequently the device can modify the appearance of content (if it can at all), with values including none, slow and fast.</td>
+    <td><p>slow</p><p>fast</p><p>none</p></td>
+    <td>Media Queries Level 4</td>
+  </tr>
+  <tr>
+    <td>environment-blending</td>
+    <td>A method for determining the external environment of a device, such as dim or excessively bright places.</td>
+    <td><p>opaque</p><p>additive</p><p>subtractive</p></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>display-mode</td>
+    <td>Tests the display mode of a device, including fullscreen(no browsers chrome), standalone (a standalone application), minimal-ui (a standalone application, but with some navigation), and browser (a more traditional browser window)</td>
+    <td><p>fullscreen</p><p>standalone</p><p>minimal-ui</p><p>browser</p></td>
+    <td>Web App Manifest</td>
+  </tr>
+</table>
+  <h3>Color</h3>
+<table>
+  <tr>
+    <td>Feature</td>
+    <td>Summary</td>
+    <td>Values</td>
+    <td>Added</td>
+  </tr>
+  <tr>
+    <td>color</td>
+    <td>Defines the color support of a device, expressed numerically as bits. So, a value of 12 would be the equivalent of a device that supports 12-bit color, and a value of zero indicates no color support.</td>
+    <td><integer></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>color-index</td>
+    <td>Defines the number of values the device supports. This can be a specific number (e.g. 10000) or a range (e.g. min-color-index: 10000, max-color-index: 15000), just like width.</td>
+    <td><integer></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>monochrome</td>
+    <td>The number of bits per pixel that a device’s monochrome supports, where zero is no monochrome support.</td>
+    <td><integer></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>color-gamut</td>
+    <td>Defines the range of </p>colors supported by the browser and device, which could be srgb, p3 or rec2020</td>
+    <td><p>srgb</p><p>p3</p><p>rec2020</p></td>
+    <td>Media Queries Level 4</td>
+  </tr>
+  <tr>
+    <td>dynamic-range</td>
+    <td>The combinatio</p>n of how much brightness, color depth, and contrast ratio supported by the video plane of the browser and user device.</td>
+    <td><p>standard</p><p>high</p></td>
+    <td></td>
+  <tr>
+    <td>inverted-colors</td>
+    <td>Checks if the browser or operating system is set to invert colors (which can be useful for optimizing accessibility for sight impairments involving color)</td>
+    <td><p>inverted</p><p>none</p></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+</table>
+  <h3>Interaction</h3>
+<table>
+  <tr>
+    <td>Feature</td>
+    <td>Summary</td>
+    <td>Values</td>
+    <td>Added</td>
+  </tr>
+  <tr>
+    <td>pointer</td>
+    <td>Sort of like any-pointer but checks if the primary input mechanism is a pointer and, if so, how accurate it is (where coarse is less accurate, fine is more accurate, and none is no pointer).</td>
+    <td><p>coarse</p><p>fine</p><p>none</p></td>
+    <td>Media Queries Level 4</td>
+  </tr>
+  <tr>
+    <td>hover</td>
+    <td>Sort of like any-hover but checks if the primary input mechanism (e.g. mouse of touch) allows the user to hover over elements.</td>
+    <td><p>hover</p><p>none</p></td>
+    <td>Media Queries Level 4</td>
+  </tr>
+  <tr>
+    <td>any-pointer</td>
+    <td>Checks if the device uses a pointer, such as a mouse or styles, as well as how accurate it is (where coarse is less accurate and fine is more accurate).</td>
+    <td><p>coarse</p><p>fine</p><p>none</p></td>
+    <td>Media Queries Level 4</td>
+  </tr>
+  <tr>
+    <td>any-hover</td>
+    <td>Checks if the device is capable of hovering elements, like with a mouse or stylus. In some rare cases, touch devices are capable of hovers.</td>
+    <td><p>hover</p><p>none</p></td>
+    <td>Media Queries Level 4</td>
+  </tr>
+</table>
+  <h3>Video Prefixed</h3>
+  <p>The spec references user agents, including TVs, that render video and graphics in two separate planes that each have their own characteristics. The following features describe those planes.</p>
+<table>
+  <tr>
+    <td>Feature</td>
+    <td>Summary</td>
+    <td>Values</td>
+    <td>Added</td>
+  </tr>
+  <tr>
+    <td>video-color-gamut</td>
+    <td>Describes the approximate range of colors supported by the video plane of the browser and user device.</td>
+    <td><p>srgb</p><p>p3</p><p>rec2020</p></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+  <tr>
+    <td>video-dynamic-range</td>
+    <td>The combination of how much brightness, color depth, and contrast ratio supported by the video plane of the browser and user device.</td>
+    <td><p>standard</p><p>high</p></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+  <tr>
+    <td>video-width¹</td>
+    <td>The width of the video plane area of the targeted display.</td>
+    <td><length></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+  <tr>
+    <td>video-height¹</td>
+    <td>The height of the video plane area of the targeted display.</td>
+    <td><length></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+  <tr>
+    <td>video-resolution¹</td>
+    <td>The resolution of the video plane area of the targeted display.</td>
+    <td><p><resolution></p><p>infinite</p></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+  <tr>
+    <td colspan="4">¹ Under discussion (Issue #5044)</td>
+  </tr>
+</table>
+  <h3>Scripting</h3>
+<table>
+  <tr>
+    <td>Feature</td>
+    <td>Summary</td>
+    <td>Values</td>
+    <td>Added</td>
+  </tr>
+  <tr>
+    <td>scripting</td>
+    <td>Checks whether the device allows scripting (i.e. JavaScript) where enabled allows scripting, initial-only.</td>
+    <td><p>enabled</p><p>initial-only</p></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+</table>
+  <h3>User Preference</h3>
+<table>
+  <tr>
+    <td>Feature</td>
+    <td>Summary</td>
+    <td>Values</td>
+    <td>Added</td>
+  </tr>
+  <tr>
+    <td>prefers-reduced-motion</td>
+    <td>Detects if the user’s system settings are set to reduce motion on the page, which is a great accessibility check.</td>
+    <td><p>no-preference</p><p>reduce</p></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+  <tr>
+    <td>prefers-reduced-transparency</td>
+    <td>Detects if the user’s system settings prevent transparent across elements.</td>
+    <td><p>no-preference</p><p>reduce</p></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+  <tr>
+    <td>prefers-contrast</td>
+    <td>Detects if the user’s system settings are set to either increase or decrease the amount of contrast between colors.</td>
+    <td><p>no-preference</p><p>high</p><p>low</p><p>forced</p></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+  <tr>
+    <td>prefers-color-scheme</td>
+    <td>Detects if the user prefers a light or dark color scheme, which is a rapidly growing way to go about creating “dark mode” interfaces.</td>
+    <td><p>light</p><p>dark</p></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+  <tr>
+    <td>forced-colors</td>
+    <td>Tests whether the browser restricts the colors available to use (which is none or active).</td>
+    <td><p>active</p><p>none</p></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+  <tr>
+    <td>prefers-reduced-data</td>
+    <td>Detects if the user prefers to use less data for the page to be rendered.</td>
+    <td><p>no-preference</p><p>reduce</p></td>
+    <td>Media Queries Level 5</td>
+  </tr>
+</table>
+  <h3>Deprecated</h3>
+<table>
+    <tr>
+      <td>Name</td>
+      <td>Summary</td>
+      <td>Removed</td>
+  </tr>
+  <tr>
+    <td>device-aspect-ratio</td>
+    <td>The width-to-height aspect ratio of the output device.</td>
+    <td>Media Queries Level 4</td>
+  </tr>
+  <tr>
+    <td>device-height</td>
+    <td>The height of the device’s surface that displays rendered elements.</td>
+    <td>Media Queries Level 4</td>
+  </tr>
+  <tr>
+    <td>device-width</td>
+    <td>The width of the device’s surface that displays rendered elements.</td>
+    <td>Media Queries Level 4</td>
+  </tr>
+</table>
+  <h3>Operators</h3>
+  <p>Media queries support logical operators like many programming languages so that we can match media types based on certain conditions. The @media rule is itself a logical operator that is basically stating that “if” the following types and features are matches, then do some stuff.</p>
+    <ul>
+      <li>and</li>
+        <p>But we can use the and operator if we want to target screens within a range of widths:</p>
+          <div class="code">
+            <code>
+              <p>/* Matches screen between 320px AND 768px */</p>
+              <p>@media screen (min-width: 320px) and (max-width: 768px) {</p>
+              <p>.element {</p>
+              <p>/* Styles! */</p>
+              <p>}</p>
+              <p>}</p>
+            </code>
+          </div>
+      <li>or (or comma-separated)</li>
+        <p>We can also comma-separate features as a way of using an or operator to match different ones:</p>
+          <div class="code">
+            <code>
+              <p>/*
+              Matches screens where either the user prefers dark mode or the screen is at least 1200px wide */</p>
+              <p>@media screen (prefers-color-scheme: dark), (min-width 1200px) {</p>
+              <p>.element {</p>
+              <p>/* Styles! */</p>
+              <p>}</p>
+              <p>}</p>
+            </code>
+          </div>
+      <li>not</li>
+        <p>Perhaps we want to target devices by what they do not support or match. This declaration removes the body’s background color when the device is a printer and can only show one color.</p>
+          <div class="code">
+            <code>
+              <p>@media print and ( not(color) ) {</p>
+              <p>body {</p>
+              <p>background-color: none;</p>
+              <p>}</p>
+              <p>}</p>
+            </code>
+          </div>
+    </ul>
+  </section>
+<hr>
+  <section class="main-section" id="do_you_really_need_media_queries?">
+<header>
+      <h2>Do you really need media queries?</h2>
+    <a name="do_you_really_need_media_queries?"></a>
+</header>
+      <p>Media queries are a powerful tool in your CSS toolbox with exciting hidden gems. But if you accomodate your design to every possible situation you’ll end up with a codebase that’s too complex to maintain and, as we all know, CSS is like a bear cub: cute and inoffensive but when it grows it will eat you alive.</p>
+      <p>That’s why I recommend following Ranald Mace’s concept of Universal Design which is “the design of products to be usable by all people, to the greatest extent possible, without the need for adaptation or specialized design.”</p>
+      <p>In “Accessibility for Everyone” Laura Kalbag explains that the difference between accessible and universal design is subtle but important. An accessible designer would create a large door for people on a wheel chair to enter, while a universal designer would produce an entry that anyone would fit disregarding of their abilities.</p>
+      <p>I know that talking about universal design on the web is hard and almost sound utopian, but think about it, there are around 150 different browsers, around 50 different combinations of user preferences, and as we mentioned before more than 24000 different and unique Android devices alone.</p>
+      <p>This means that there are at least 18 million possible cases in which your content might be displayed. In the words of the fantastic Miriam Suzanne, “CSS out here trying to do graphic design of unknown content on an infinite and unknown canvas, across operating systems, interfaces, & languages. There’s no possible way for any of us to know what we’re doing.”</p>
+      <p>That’s why assuming is really dangerous,so when you design, develop and think about your products leave assumptions behind and use media queries to make sure that your content is displayed correctly in any contact and before any user.</p>
+  </section>
+<hr>
+  <section class="main-section" id="using_min-_and_max-_to_match_value_ranges">
+<header>
+    <h2>Using min- and max- to match value ranges</h2>
+    <a name="using_min-_and_max-_to_match_value_ranges"></a>
+</header>
+    <p>Many of the media features outlined in the previous section — including width, height, color and color-index — can be prefixed with min- or max- to express minimum or maximum constraints. We’ve already seen these in use throughout many of the examples, but the point is that we can create a range of value to match instead of having to declare specific values.</p>
+    <p>In the following snippet, we’re painting the body’s background purple when the viewport width is wider than 30em and narrower than 80em. If the viewport width does not match that range of values, then it will fallback to white.</p>
+      <div class="code">
+        <code>
+          <p>body {</p>
+          <p>background-color: #fff;</p>
+          <p>}</p>
+          <p>@media (min-width: 30em) and (max-width: 80em) {</p>
+          <p>body {</p>
+          <p>background-color: purple;</p>
+          <p>}</p>
+          <p>}</p>
+        </code>
+      </div>
+  <p>Media Queries Level 4 specifies a new and simpler syntax using less then (<), greater than (>) and equals (=) operators. Unfortunately, at the time of writing, it’s only supported by FireFox.</p>
+  </section>
+  <hr>
+  <section class="main-section" id="nesting_and_complex_decision_making?">
+<header>
+    <h2>Nesting and complex decision making?</h2>
+    <a name="nesting_and_complex_decision_making?"></a>
+</header>
+    <p>CSS allows you to nest at-rules or group statements using parentheses, making it possible to go as deep as we want to evaluate complex operations.</p>
+      <div class="code">
+        <code>
+          <p>@media (min-width: 20em), not all and (min-height: 40em) {</p>
+          <p>@media not all and (pointer: none) { ... }</p>
+          <p>@media screen and ( (min-width: 50em) and (orientation: landscape) ), print and ( not (color) ) { ... }</p>
+          <p>}</p>
+        </code>
+      </div>
+    <p>Be careful! even thought it’s possible to create powerful and complex expressions, you might end up with a very opinionated, hard to maintain query. As Brad Frost puts it: “The more complex our interfaces are, the more we have to think to maintain them properly.”</p>
+  </section>
+  <hr>
+  <section class="main-section" id="accessibility">
+<header>
+      <h2>Accessibility</h2>
+    <a name="accessibility"></a>
+</header>
+      <p>Many of the features added in Media Queries Level 4 are centered around accessibility.</p>
+      <h3>prefers-reduced-motion</h3>
+        <ul>
+          <li>prefers-reduced-motion detects if the user has the reduced motion preference activated to minimize the amount of movements and animations. It takes two values:</li>
+          <li>no-preference: Indicates that the user has made no preference known to the system.</li>
+          <li>reduce: Indicates that user has notified the system that they prefer an interface that minimizes the amount of movement or animation, preferably to the point where all non-essential movement is removed.</li>
+        </ul>
+    <p>This preference is generally used by people who suffer from vestibular disorder or vertigo, where different movements result in loss of balance, migraine, nausea or hearing loss. If you ever tried to spin quickly and got dizzy, you know what it feels like.</p>
+    <p>In a fantastic article by Eric Bailey, he suggests stopping all animations with this code:</p>
+      <div class="code">
+       <code>
+         <p>@media screen and (prefers-reduced-motion: reduce) {</p>
+         <p> * {</p>
+         <p>/* Very short durations means JavaScript that relies on events still works */</p>
+         <p>animation-duration: 0.001ms !important;</p>
+         <p>animation-iteration-count: 1 !important;</p>
+         <p>transition-duration: 0.001ms !important;</p>
+         <p>}</p>
+         <p>}</p>
+       </code>
+     </div>
+  <p>Popular frameworks like Bootstrap have this feature on by default. In my opinion there is no excuse not to use prefers-reduced-motion — just use it.</p>
+  <h3>prefers-contrast</h3>
+  <p>The prefers-contrast feature informs whether the user has chosen to increase or reduce contrast in their system preferences or the browser settings. It takes three values:</p>
+    <ul>
+      <li>no-preference: When a user has made no preference known to the system. If you use it as a boolean it’ll evaluate false.</li>
+      <li>high: When a user has selected the option to display a higher level of contrast.</li>
+      <li>low: When a user has selected the option to display a lower level of contrast.</li>
+    </ul>
+  <p>At the moment of writing this feature is not supported by any browser. Microsoft has done a non-standard earlier implementation with the -ms-high-contrast feature that works only on Microsoft Edge v18 or earlier (but not Chromium-based versions).</p>
+    <div class="code">
+      <code>
+        <p>.button {</p>
+        <p>background-color: #0958d8;</p>
+        <p>color: #fff;</p>
+        <p>}</p>
+        <p>@media (prefers-contrast: high) {</p>
+        <p>.button {</p>
+        <p>background-color: #0a0db7;</p>
+        <p>}</p>
+        <p>}</p>
+      </code>
+    </div>
+  <p>This example is increasing the contrast of a the class button from AA to AAA when the user has high contrast on.</p>
+  <h3>inverted-colors</h3>
+  <p>The inverted-colors feature informs whether the user has chosen to invert the colors on their system preferences or the browser settings. Sometimes this option is used as an alternative to high contrast. It takes three values:</p>
+    <ul>
+      <li>none: When colors are displayed normally</li>
+      <li>inverted: When a user has selected the option to invert colors.</li>
+    </ul>
+  <p>The problem with inverted colors is that it’ll also invert the colors of images and videos, making them look like x-ray images. By using a CSS invert filter you can select all images and videos and invert them back.</p>
+    <div class="code">
+      <code>
+        <p>@media (inverted-colors) {</p>
+        <p>img, video {</p>
+        <p>filter: invert(100%);</p>
+        <p>}</p>
+        <p>}</p>
+      </code>
+    </div>
+  <p>At the time of writing this feature is only supported by Safari.</p>
+  <h3>prefers-color-scheme</h3>
+  <p>Having a “dark mode” color scheme is something we’re seeing a lot more of these days, and thanks to the prefers-color-scheme feature, we can tap into a user’s system or browser preferences to determine whether we serve a “dark” or a “light” theme based on the ir preferences.</p>
+  <p>It takes two values:</p>
+    <ul>
+      <li>light: When a user has selected that they prefer a light theme or has no active preferences.</li>
+      <li>dark: When a user has selected a dark display in their settings.</li>
+    </ul>
+  <p>As Adhuham explains in the complete guide to Dark Mode there is way more to it than just changing the color of the background. Before you jump into doing dark mode remember that if you don’t have a very smart implementation strategy you might end up with a code base that’s really hard to maintain. CSS variables can do wonders for it but that’s a subject for another article.</p>
+  </section>
+  <hr>
+  <section class="main-section" id="what_lies_ahead?">
+<header>
+      <h2>What lies ahead?</h2>
+    <a name="what_lies_ahead?"></a>
+</header>
+      <p>Media Queries Level 5 is currently in Working Draft status, which means a lot can change between now and when it becomes a recommendation. But it includes interesting features that are worth mentioning because they open up new ways to target screens and adapt designs to very specific conditions.</p>
+      <h3>User preference media features</h3>
+      <p>Hey, we just covered these in the last section! Oh well. These features are exciting because they’re informed by a user’s actual settings, whether they are from the user agent or even at the operating system level.</p>
+      <h3>Detecting a forced color palette</h3>
+      <p>This is neat. Some browsers will limit the number of available colors that can be used to render styles. This is called “forced colors mode” and, if enabled in the browser settings, the user can choose a limited set of colors to use on a page. As a result, the user is able to define color combinations and contrasts that make content more comfortable to read.</p>
+      <p>The forced-colors feature allows us to detect if a forced color palette is in use with the active value. If matched, the browser must provide the required color palette through the CSS system colors. The browser is also given the leeway to determine if the background color of the page is light or dark and, if appropriate, trigger the appropriate prefers-color-scheme value so we can adjust the page.</p>
+      <h3>Detecting the maximum brightness, color depth, and contrast ratio</h3>
+      <p>Some devices (and browsers) are capable of super bright displays, rendering a wide range of colors, and high contrast ratios between colors. We can detect those devices using the dynamic-range feature, where the high keyword matches these devices and standard matches everything else.</p>
+      <p>We’re likely to see changes to this because, as of right now, there’s still uncertainty about what measurements constitute “high” levels of brightness and contrast. The browser may get to make that determination.</p>
+      <h3>Video prefixed features</h3>
+      <p>The spec talks about some screens, like TVs, that are capable of displaying video and graphics on separate “planes” which might be a way of distinguishing the video frame from other elements on the screen. As such, Media Queries Level 5 is proposing a new set of media features aimed at detecting video characteristics, including color gamut and dynamic range.</p>
+      <p>There are also proposals to detect video height, width and resolution, but the jury’s still out on whether those are the right ways to address video.</p>
+  </section>
+  <hr>
+  <section class="main-section" id="browser_support">
+<header>
+    <h2>Browser support</h2>
+    <a name="browser_support"></a>
+</header>
+    <p>Browsers keep evolving and since by the time you are reading this post chances are that browser support for this feature might change, please check MDN updated browser compatibility<a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media" style="color:Blue">table.</a></p>
+  </section>
+  <hr>
+  <section class="main-section" id="a_note_on_container_queries">
+<header>
+    <h2>A note on container queries</h2>
+    <a name="a_note_on_container_queries"></a>
+</header>
+    <p>Wouldn’t be cool if components could adapt themselves on their own size instead of the browser’s? That’s what the concept of container queries is all about. We currently only have the browser screen to make those changes via media queries. That’s unfortunate, as the viewport isn’t always a direct relationship to how big the element itself is. Imagine a widget that renders in many different contexts on a site: sometimes in a sidebar, sometimes in a full-width footer, sometimes in a grid   with unknown columns.</p>
+    <p>This is the problem that the elusive container queries idea is trying to solve. Ideally we could adapt styles of an element according to the size of itself instead of of the size of the viewport. But container queries don’t exist yet. The WICG is looking for use cases and it’s a highly requested feature. We see occasional movement, but it’s unsure if we’ll ever get it. But when we do, you can bet that it will have an impact on how we approach media queries as well.</p>
+  </section>
+</div>
+</main>
+</body>
+<footer>
+  <p>Reference:</p>
+  <p>All the documentation in this page is taken from <a target="_blank"href="https://css-tricks.com/a-complete-guide-to-css-media-queries/">css-tricks.com</a></p>
+  <p><strong>Copyright 2022 - Ariana Spretz</strong></p>
+</footer>
+  
+</html>
