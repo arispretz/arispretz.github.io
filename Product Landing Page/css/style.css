@@ -1,0 +1,256 @@
+
+<style>
+
+html {
+  font-family: sans-serif;
+  text-decoration: none;
+}
+
+h1 {
+   font-size: 24px;
+   line-height: 2px;
+}
+
+img {
+  max-width: 100%;
+  max-height: auto;
+  object-fit: contain;
+ }
+  @media (max-width: 460px) {
+ img:hover {
+   transform: scale(2.1);
+ }
+}
+ .img-size {
+   height: 100px;
+   width: 100px;
+   align-self: center;
+}
+
+.small-image {
+  border-color: #6C3483;
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 90%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #F5B7B1;
+  font-size: 20px;
+  height: 35px;
+}
+
+#nav-bar {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+}
+
+.nav-link, a {
+  color: #000000;
+  text-decoration: none;
+  padding: 5px;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #E5E8E8;
+  padding: 50px;
+}
+
+#see {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+#products {
+  padding: 50px;
+}
+#about-us {
+  padding: 50px;
+}
+#contact-us {
+  padding: 50px;
+}
+
+#testimonials {
+  padding: 50px;
+}
+#box-testimonials {
+  justify-content: center;
+}
+
+#testimonial-1, #testimonial-2, #testimonial-3 {
+  background-color: #E5E8E8;
+  text-align: justify;
+  margin: 30px;
+  padding: 50px;
+}
+
+.small-border {
+  border-color: #6C3483;
+  border-width: 2px;
+  border-style: solid;
+  margin: auto;
+  width: 280px;
+  height: 50px;
+}
+
+.copy, prove  {
+  font-family: times new roman;
+  font-size: 14px;
+}
+
+#box-container-products {
+  height: 1500px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-shrink: 1;
+  border: 1px solid;
+  border-color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  font-family: verdana;
+  font-size: 14px;
+}
+
+#box-product-1 {
+  background-color: #FCF3CF;
+  order: 1;
+  height: 500px;
+  width: 300px;
+  align-self: center;
+  text-align: center;
+  border-color: #6C3483;
+  border-width: 2px;
+  border-style: solid;
+  padding-top: 20px;
+}
+
+#box-product-2 {
+  background-color: #E5E7E9;
+  order: 2;
+  height: 500px;
+  width: 300px;
+  align-self: center;
+  text-align: center;
+  border-color: #6C3483;
+  border-width: 2px;
+  border-style: solid;
+  padding-top: 20px;
+}
+
+#box-product-3 {
+  background-color: #D6EAF8;
+  order: 3;
+  height: 500px;
+  width: 300px;
+  align-self: center;
+  text-align: center;
+  border-color: #6C3483;
+  border-width: 2px;
+  border-style: solid;
+  padding-top: 20px;
+}
+
+#box-product-4 {
+  background-color: #EBDEF0;
+  order: 4;
+  height: 500px;
+  width: 300px;
+  align-self: center;
+  text-align: center;
+  border-color: #6C3483;
+  border-width: 2px;
+  border-style: solid;
+  padding-top: 20px;
+}
+
+#box-product-5 {
+  background-color: #FBEEE6;
+  order: 5;
+  height: 500px;
+  width: 300px;
+  align-self: center;
+  text-align: center;
+  border-color: #6C3483;
+  border-width: 2px;
+  border-style: solid;
+  padding-top: 20px;
+}
+
+#box-product-6 {
+  background-color: #D5F5E3;
+  order: 6;
+  height: 500px;
+  width: 300px;
+  align-self: center;
+  text-align: center;
+  border-color: #6C3483;
+  border-width: 2px;
+  border-style: solid;
+  padding-top: 20px;
+}
+
+.price  {
+  font-family: arial narrow;
+  font-size: 24px;
+  line-height: 25px;
+  font-weight: bolder;
+}
+
+.button-buy {
+  background-color: #6C3483;
+  padding: 20px;
+  border-radius: 30%;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+body {
+  background-color: #EBF5FB;
+  background: url("https://blogger.googleusercontent.com/img/a/AVvXsEiibnMQNMU59Fegd0zn1JOg-dvQMgvhJmpf2-lix6fy7dfX95YKPVFR6MAaASd5V8-6i5N81durGx2Zjod44Vr6E7w1uore8zBW_DYmoH8BO2hTbVTIC2I1l2HiXqCEX7QB8y40f4vb8m8IOm6i-A_d4RrzUk7RP4WkCPIkWa0s0sVOcxlUCtxkAYkQiw=w945-h600-p-k-no-nu");
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+main {
+  background-color: #ffffff;
+  margin: auto;
+  width: 85%;
+  height: 85%;
+  object-fit: fill;
+  opacity: 90%;
+  padding: 15px;
+}
+
+form {
+  background-color: #5D6D7E;
+  color: #ffffff;
+  font-size: 16px;
+  text-align: center;
+  padding: 25px;
+  margin: 10px;
+  line-height: 25px;
+}
+
+#footer {
+  display: flex;
+  flex-direction: row;
+  background-color: #6C3483;
+  color: #ffffff;
+  opacity: 90%;
+  justify-content: space-around;
+}
+
+</style>
