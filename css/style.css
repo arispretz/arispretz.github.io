@@ -1,3 +1,4 @@
+<style>
 :root {
   --main-purple: #6C3483;
   --main-maroon: #834434;
@@ -310,3 +311,6 @@ footer > p {
 footer i {
   vertical-align: middle;
 }
+
+</style>
+
