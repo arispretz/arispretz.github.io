@@ -15,6 +15,10 @@ body {
   object-fit: fill;
 }
 
+#shape {
+  justify-content: left;
+}
+
 #brand {
   background-color: #1020C5;
   color: #ffffff;
