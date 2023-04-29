@@ -1,0 +1,17 @@
+function palindrome(str) {
+// to remove all non-alphanumeric characters (punctuation, spaces and symbols)
+  let deleteChar = str.replace(/[\W_]/g, '');
+// to turn everything into the same case(lowercase)
+  let oneStr = deleteChar.toLowerCase();
+// a copy of the original input is divided in every character of the string, reversed and then get together again 
+  let strRev = oneStr.split('').reverse().join('');
+// comparing the original input and the reversed string 
+    if (oneStr === strRev) {
+       return true;
+      }
+      else {
+        return false;
+      }
+}
+
+palindrome("eye");
