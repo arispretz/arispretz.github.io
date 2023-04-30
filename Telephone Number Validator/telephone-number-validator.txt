@@ -1,0 +1,15 @@
+function telephoneCheck(str) {
+// To verify the presence of certain characters
+var telRegex=/^[1-9]\d{9}$|^[1-9]\d{2}-[0-9]\d{2}-[0-9]\d{3}$|^\([1-9]\d{2}\)[0-9]\d{2}-[0-9]\d{3}$|^\([1-9]\d{2}\)\s[0-9]\d{2}-[0-9]\d{3}$|^[1-9]\d{2}\s[0-9]\d{2}\s[0-9]\d{3}$|^[1]\s[0-9]\d{2}\s[0-9]\d{2}\s[0-9]\d{3}$|^[1]\s[0-9]\d{2}-[0-9]\d{2}-[0-9]\d{3}$|^[1]\s\([0-9]\d{2}\)\s[0-9]\d{2}-[0-9]\d{3}$|^[1]\([0-9]\d{2}\)[0-9]\d{2}-[0-9]\d{3}$/g;
+  console.log(str.match(telRegex));
+// If the sequence of characters entered corresponds to the pattern searched, it is a valid telephone number, otherwise it is false.  
+  if(str.match(telRegex)){
+    console.log("This is a valid telephone number");
+    return true;
+  } else {
+    console.log("This is a not valid telephone number");
+    return false;
+  }
+} 
+
+telephoneCheck("555-555-5555");
