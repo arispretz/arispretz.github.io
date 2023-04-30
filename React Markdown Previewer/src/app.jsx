@@ -108,7 +108,6 @@ const handleChange = (event) => {
  <div className="row">
  <div className="bg-primary text-white">
  <h2>Editor</h2>
-// response to event
    <Editor text={text} handleChange={handleChange} />
  </div>
  <div className="bg-info text-dark" >
