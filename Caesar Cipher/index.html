@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>show code</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+  
+<body>
+  <nav id="navbar" class="nav">
+
+<ul class="nav-list">
+
+<li>
+
+<a href="http://arispretz.github.io" target="_blank">Home</a>
+
+</li>
+
+</ul>
+
+</nav>
+
+<h2>my code</h2>
+
+
+<section id="projects" class="projects-section">
+
+  <code onmousedown="return false;">
+    <p>1  function rot13(str) {</p>
+    <p>2    let encoded = '';</p>
+<p class="comment">3  // creating an empty string where to save every character encoded</p>
+  <p>4  for (let i = 0; i < str.length; i++) {</p>
+<p class="comment">5  // repeating actions in every character of the input</p>
+  <p>6  let letterCode = str[i].charCodeAt();</p>
+<p class="comment">7  // getting character code (unicode)</p> 
+  <p>8  if (letterCode >= 65 && letterCode <= 77) {</p>
+<p class="comment">9  // if character code is higher or equal than 65 and less or equal than 77</p> 
+    <p>10  encoded += String.fromCharCode(letterCode + 13);</p>
+       <p class="comment">11  // Add thirteen to character code and converting it to an alphabetical character</p>
+      <p>12} else if (letterCode >= 78 && letterCode <= 90) {</p>
+      <p class="comment">13  // if character code is higher or equal than 78 and less or equal than 90</p>
+        <p>14  encoded += String.fromCharCode(letterCode - 13);</p>
+      <p class="comment">15  // Subtract thirteen to character code and converting it to an alphabetical character</p>
+<p>16  } else {</p>
+<p>17  encoded += str[i];</p>
+<p class="comment">18  // remaining characters are added as they were entered</p>
+<p>19  }</p>
+<p>20  }</p>
+<p>21  return encoded;</p>
+<p class="comment">22  // return the whole phrase encoded to rot13</p>
+<p>23  }</p> 
+<p>24  rot13("SERR PBQR PNZC");</p>
+  </code>
+ 
+  <script src="script.js"></script>
+</section>
+</body>
+
+<footer>
+
+<p>&copy; Created by Ariana Spretz.</p>
+
+</footer>
+
+</html>
