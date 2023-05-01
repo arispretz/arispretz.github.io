@@ -21,7 +21,6 @@ html {
   font-family:'Open Sans', sans-serif;
   font-size: 62.5%;
   scroll-behavior: smooth;
-
 }
 
 @media (max-width: 75em) {
@@ -247,5 +246,3 @@ footer {
 footer > p {
   margin: 2rem;
 }
-
-
