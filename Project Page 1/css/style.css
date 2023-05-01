@@ -21,7 +21,7 @@ html {
   font-family:'Open Sans', sans-serif;
   font-size: 62.5%;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+
 }
 
 @media (max-width: 75em) {
@@ -51,12 +51,11 @@ body {
 }
 
 h2 {
-  font-weight: 100;
   text-align: center;
   color: var(--main-white);
-  font-size: 3.2rem;
+  font-size: 3rem;
   padding-right: 20rem;
-  marging-top: 15rem;
+  padding-top: 0.5rem;
   font-weight: bold;
   font-family: verdana;
 }
@@ -130,7 +129,9 @@ a:hover {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 110vh;
+  height: 150vh;
+  row-gap: 2rem;
+  column-gap: 2rem;
   text-align: center;
   padding: 10rem 9rem 10rem 9rem;
   background-color: var(--main-green);
