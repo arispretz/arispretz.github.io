@@ -82,6 +82,11 @@ h4 {
   padding-top: 7rem;
   margin-right: 18rem;
 }
+
+#write {
+  padding-left: 18rem;
+}
+
 .background {
   background-color: var(--main-purple);
 }
@@ -183,7 +188,7 @@ img {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 110vh;
+  height: 125vh;
   text-align: center;
   padding: 10rem 9rem 10rem 9rem;
   background-color: var(--main-green);
